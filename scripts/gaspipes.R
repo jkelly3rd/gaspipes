@@ -34,6 +34,7 @@ gas_incidents_detroit <- leaflet(gasincidents %>%
                                   "<br><strong>City:</strong>", location_city_name, 
                                   "<br><strong>Fatalities:</strong>", fatal,
                                   "<br><strong>Injuries:</strong>", injure,
+                                  "<br><strong>Ignited?:</strong>", ignite_ind,
                                   "<br><strong>Gas Provider:</strong>", name)) %>%
   addLegend("bottomright", colors = c("red", "blue"), 
             labels = c("Fatal", "Non-fatal"), 
@@ -47,7 +48,7 @@ saveWidget(gas_incidents_detroit, "docs/gas_incidents_detroit.html", selfcontain
 # Create a document that gives every incidents in Wayne or Oakland County Michigan with the year, date, street address, city, county, gas company name and the narrative description of the incident and number of fatalities
 detroit_incidents <- gasincidents %>% 
   filter(location_county_name %in% c("WAYNE", "WAYNE COUNTY","OAKLAND","OAKLAND COUNTY") & location_state_abbreviation == "MI") %>% 
-  select(iyear, local_datetime, location_street_address, location_city_name, location_county_name, name, narrative, fatal,injure)
+  select(iyear, local_datetime, location_street_address, location_city_name, location_county_name, name, narrative, fatal,injure,ignite_ind)
 # use lubridate to convert the local_datetime to a date
 detroit_incidents <- detroit_incidents %>% 
   mutate(local_datetime = mdy_hm(local_datetime)) %>% 
