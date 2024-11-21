@@ -1,6 +1,8 @@
 library(tidyverse)
 library(lubridate)
 library(leaflet)
+library(leaflet.extras)
+library(leaflet.providers)
 library(htmlwidgets)
 
 
@@ -23,7 +25,7 @@ gasincidents <- read_tsv("data/gasincidents/incident_gas_distribution_jan2010_pr
 #  addTiles() %>%
 #  addCircleMarkers(~location_longitude, ~location_latitude, color = ~ifelse(fatal > 0, "red", "blue"))
 # map gas incidents in Michigan only
-das_incidents_detroit <- leaflet(gasincidents %>% 
+gas_incidents_detroit <- leaflet(gasincidents %>% 
   filter(location_state_abbreviation == "MI")) %>%
   addTiles() %>%
   addCircleMarkers(~location_longitude, ~location_latitude, color = ~ifelse(fatal > 0, "red", "blue"), 
@@ -34,8 +36,13 @@ das_incidents_detroit <- leaflet(gasincidents %>%
   addLegend("bottomright", colors = c("red", "blue"), 
             labels = c("Fatal", "Non-fatal"), 
             title = "Incident Type") %>%
-  setView(-83.0458, 42.3314, zoom = 9)
+  setView(-83.0458, 42.3314, zoom = 9) %>%
+  addControl(title = "Gas Incidents in Detroit", position = "topleft")
+# repeat with a headline over the top left of map that says "Gas Incidents in Detroit"
+gas_incidents_detroit <- das_incidents_detroit %>%
+  addControl(title = "Gas Incidents in Detroit", position = "topleft")
+
 
 # save an html version of the map into the docs directory
-saveWidget(das_incidents_detroit, "docs/das_incidents_detroit.html", selfcontained = TRUE)
+saveWidget(gas_incidents_detroit, "docs/das_incidents_detroit.html", selfcontained = TRUE)
 
