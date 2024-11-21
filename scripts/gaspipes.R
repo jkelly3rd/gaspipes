@@ -37,12 +37,10 @@ gas_incidents_detroit <- leaflet(gasincidents %>%
             labels = c("Fatal", "Non-fatal"), 
             title = "Incident Type") %>%
   setView(-83.0458, 42.3314, zoom = 9) %>%
-  addControl(title = "Gas Incidents in Detroit", position = "topleft")
-# repeat with a headline over the top left of map that says "Gas Incidents in Detroit"
-gas_incidents_detroit <- das_incidents_detroit %>%
-  addControl(title = "Gas Incidents in Detroit", position = "topleft")
+  addControl(html = "<h3>Gas Incidents in Detroit</h3>", position = "topright")
 
 
+    
 # save an html version of the map into the docs directory
-saveWidget(gas_incidents_detroit, "docs/das_incidents_detroit.html", selfcontained = TRUE)
+saveWidget(gas_incidents_detroit, "docs/gas_incidents_detroit.html", selfcontained = TRUE)
 
