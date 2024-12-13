@@ -39,7 +39,7 @@ gas_incidents_detroit <- leaflet(gasincidents %>%
   addLegend("bottomright", colors = c("red", "blue"), 
             labels = c("Fatal", "Non-fatal"), 
             title = "Incident Type") %>%
-  setView(-83.0458, 42.3314, zoom = 9.5) %>%
+  setView(-83.0458, 42.3314, zoom = 9) %>%
   addControl(html = "<h3>Gas Incidents in Detroit Region<br>From 2010 to October 2024</h3>", position = "topright")
     
 # save an html version of the map into the docs directory
