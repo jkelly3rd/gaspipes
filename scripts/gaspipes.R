@@ -7,7 +7,7 @@ library(htmlwidgets)
 
 
 
-# import the zip file in the data directory
+# import the zip file for gas pipes' inventory in the data directory
 unzip("data/annual_gas_distribution_2010_present.zip", exdir = "data/gaspipes")
 # repeat for the zip file for gas incidents
 unzip("data/incident_gas_distribution_jan2010_present.zip", exdir = "data/gasincidents")
